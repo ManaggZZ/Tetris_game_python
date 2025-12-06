@@ -9,9 +9,9 @@ dark_blue = (44, 44, 127)
 screen = pygame.display.set_mode((300, 600))
 pygame.display.set_caption("Python Tetris")
 
-# In game the coordinate system starts from top left corner and if we mov right then x increases and if we move down then y increases
+#! In game the coordinate system starts from top left corner and if we move right then x increases and if we move down then y increases
 
-clock = pygame.time.Clock()     #This is used to control the frame rate of game.
+clock = pygame.time.Clock()     #! This is used to control the frame rate of game.
 
 # Using Grid Class
 game_grid = Grid()
