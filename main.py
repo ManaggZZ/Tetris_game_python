@@ -15,6 +15,13 @@ clock = pygame.time.Clock()     #! This is used to control the frame rate of gam
 
 # Using Grid Class
 game_grid = Grid()
+
+game_grid.grid[0][0] = 1
+game_grid.grid[0][1] = 1
+game_grid.grid[0][2] = 1
+game_grid.grid[3][5] = 4
+game_grid.grid[17][8] = 7
+
 game_grid.print_grid()
 
 # GAME LOOP
