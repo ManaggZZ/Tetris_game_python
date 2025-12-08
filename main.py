@@ -1,6 +1,7 @@
 import pygame, sys
 from grid import Grid
 from tetraminoes import *
+# from block import Block
 
 pygame.init()
 dark_blue = (44, 44, 127)
@@ -18,7 +19,7 @@ clock = pygame.time.Clock()     #! This is used to control the frame rate of gam
 game_grid = Grid()
 
 block = LBlock()
-block = TBlock()
+block.move(4,3)
 
 # GAME LOOP
     # Event handling
