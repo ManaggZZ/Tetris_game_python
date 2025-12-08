@@ -22,6 +22,11 @@ class Grid:
                 print(self.grid[row][column], end = " ")
             print()
         
+    def is_inside(self, row, column):   #! This method is to set the boundary while moving the blocks out of the window
+        if row >= 0 and row < self.num_rows and column >= 0 and column <self.num_cols:
+            return True
+        return False
+
 #* How Pygame draws: Display Surface, Regular Surface, and Rect
 # The display surface (created with set_mode) is the main canvas we see on screen. We can have only one per game.
 # Regular surfaces are additional drawable surfaces (e.g., for text) and we can create many of them.
