@@ -1,5 +1,6 @@
 import pygame, sys
 from grid import Grid
+from tetraminoes import *
 
 pygame.init()
 dark_blue = (44, 44, 127)
@@ -16,13 +17,7 @@ clock = pygame.time.Clock()     #! This is used to control the frame rate of gam
 # Using Grid Class
 game_grid = Grid()
 
-game_grid.grid[0][0] = 1
-game_grid.grid[0][1] = 1
-game_grid.grid[0][2] = 1
-game_grid.grid[3][5] = 4
-game_grid.grid[17][8] = 7
-
-game_grid.print_grid()
+block = LBlock()
 
 # GAME LOOP
     # Event handling
@@ -38,6 +33,8 @@ while True:     # This will run till the game is open
     # Drawing
     screen.fill(dark_blue)
     game_grid.draw(screen)
+    block.draw(screen)
+
     pygame.display.update() 
     clock.tick(60)      # The tick() method takes an integer as an argument and that integer is the number of frames per sec
 
