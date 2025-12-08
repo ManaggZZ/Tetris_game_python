@@ -18,6 +18,7 @@ clock = pygame.time.Clock()     #! This is used to control the frame rate of gam
 game_grid = Grid()
 
 block = LBlock()
+block = TBlock()
 
 # GAME LOOP
     # Event handling
