@@ -32,6 +32,32 @@ class Grid:
             return True
         return False
 
+    def is_row_full(self, row):     #! To check if any row is completed
+        for column in range(self.num_cols):
+            if self.grid[row][column] == 0:
+                return False
+        return True
+
+    def clear_row(self, row):
+        for column in range(self.num_cols):
+            self.grid[row][column] = 0
+    
+    def move_row_down(self, row, num_rows):
+        for column in range(self.num_cols):
+            self.grid[row + num_rows][column] = self.grid[row][column]
+            self.grid[row][column] = 0
+    
+    def clear_full_rows(self):
+        completed = 0
+        for row in range(self.num_rows-1, 0, -1):   #* To move up while checking the rows
+            if self.is_row_full(row):
+                self.clear_row(row)
+                completed += 1
+            elif completed > 0:
+                self.move_row_down(row, completed)
+        return completed
+
+
 #* How Pygame draws: Display Surface, Regular Surface, and Rect
 # The display surface (created with set_mode) is the main canvas we see on screen. We can have only one per game.
 # Regular surfaces are additional drawable surfaces (e.g., for text) and we can create many of them.
