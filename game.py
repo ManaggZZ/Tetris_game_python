@@ -1,6 +1,7 @@
 from grid import Grid
 from tetraminoes import *
 import random
+import pygame   # To load the sounds effects
 
 #! To improve code organization and make it easier to manage in the future we will create a game class to hold the grid and the block objects as well as various methods. The game will serve as container for all the elements of our game such as the grid, current and next block and game state. It will also holds methods that manage the game's logic such as updating the block's positions, checking for collisions, etc. By centralizing all the games functionality within this class it will be easier to understand maintain and expand upon in future.
 
@@ -13,6 +14,11 @@ class Game:
         self.next_block = self.get_random_block()
         self.game_over = False
         self.score = 0
+        self.rotate_sound = pygame.mixer.Sound("Sounds/rotate_fixed_stereo.mp3")     
+        self.clear_sound = pygame.mixer.Sound("Sounds/clear_fixed_stereo.mp3")     
+
+        pygame.mixer.music.load("Sounds/music_fixed_stereo.mp3")
+        pygame.mixer.music.play(-1)     #! -1 is indicating that the music should loop indefininetly.
     
     def update_score(self, lines_cleared, move_down_points):
         if lines_cleared == 1:
@@ -55,7 +61,9 @@ class Game:
         self.current_block = self.next_block
         self.next_block = self.get_random_block()
         rows_cleared = self.grid.clear_full_rows()
-        self.update_score(rows_cleared, 0)
+        if rows_cleared > 0:
+            self.clear_sound.play()
+            self.update_score(rows_cleared, 0)
         if self.block_fits() == False:
             self.game_over = True
     
@@ -77,6 +85,8 @@ class Game:
         self.current_block.rotate()
         if self.block_inside() == False or self.block_fits() == False:
             self.current_block.undo_rotation()
+        else:
+            self.rotate_sound.play()
     
     def block_inside(self):     #! Method to check if the position of block if inside the window or not
         tiles = self.current_block.get_cell_positions()

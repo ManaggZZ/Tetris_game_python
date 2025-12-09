@@ -38,7 +38,7 @@ class Block:
     #! This method is to prevent tetraminoes to move outside the screen while rotating
     def undo_rotation(self):
         #// self.rotation_state -= 1
-        #// if self.rotation_state == 0:
+        #// if self.rotation_state == -1:
         #//     self.rotation_state = len(self.cells) - 1
         if not self.cells:
             return
