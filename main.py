@@ -29,6 +29,10 @@ game = Game()
     # Updating the positions
     # Drawing objects
 
+# Here GMAE_UPDATE is the custom event name
+GAME_UPDATE = pygame.USEREVENT      #! USEREVENT is a special event type in pygame that can be used to create custom events. In this case it is used to create an event that will be triggered every time the block's position need to be updated.
+pygame.time.set_timer(GAME_UPDATE, 200)     #* set_timer(event_name, interval in miliseconds)
+
 while True:     # This will run till the game is open
     for event in pygame.event.get():    # This will get all the events that pygame recognises and puths them in a list. Then we look through the list of events and check if any of the events is QUIT event. The QUIT event is when we click the close button of the window.
         if event.type == pygame.QUIT:
@@ -44,12 +48,16 @@ while True:     # This will run till the game is open
                 game.move_down()
             if event.key == pygame.K_UP:
                 game.rotate()
+        
+        if event.type == GAME_UPDATE:
+            game.move_down()
     
     # Drawing
     screen.fill(dark_blue)
     #// game_grid.draw(screen)
     #// block.draw(screen)
     game.draw(screen)
+    game.move_down
 
     pygame.display.update() 
     clock.tick(60)      # The tick() method takes an integer as an argument and that integer is the number of frames per sec

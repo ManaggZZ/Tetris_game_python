@@ -28,18 +28,18 @@ class Block:
         return moved_tiles
 
     def rotate(self):
-        # self.rotation_state += 1
-        # if self.rotation_state == len(self.cells):
-        #     self.rotation_state = 0
+        #// self.rotation_state += 1
+        #// if self.rotation_state == len(self.cells):
+        # //    self.rotation_state = 0
         if not self.cells:
             return
         self.rotation_state = (self.rotation_state + 1) % len(self.cells)
 
     #! This method is to prevent tetraminoes to move outside the screen while rotating
     def undo_rotation(self):
-        # self.rotation_state -= 1
-        # if self.rotation_state == 0:
-        #     self.rotation_state = len(self.cells) - 1
+        #// self.rotation_state -= 1
+        #// if self.rotation_state == 0:
+        #//     self.rotation_state = len(self.cells) - 1
         if not self.cells:
             return
         self.rotation_state = (self.rotation_state - 1) % len(self.cells)

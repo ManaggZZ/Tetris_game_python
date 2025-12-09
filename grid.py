@@ -27,6 +27,11 @@ class Grid:
             return True
         return False
 
+    def is_empty(self, row, column):     #! To handle the collision of falling and locking blocks
+        if self.grid[row][column] == 0:
+            return True
+        return False
+
 #* How Pygame draws: Display Surface, Regular Surface, and Rect
 # The display surface (created with set_mode) is the main canvas we see on screen. We can have only one per game.
 # Regular surfaces are additional drawable surfaces (e.g., for text) and we can create many of them.
