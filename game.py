@@ -87,4 +87,11 @@ class Game:
 
     def draw(self, screen):
         self.grid.draw(screen)
-        self.current_block.draw(screen)
+        self.current_block.draw(screen, 11, 11)
+
+        if self.next_block.id == 3:     #! To adjust the IBlock in next block screen
+            self.next_block.draw(screen, 255, 290)
+        elif self.next_block.id == 4:     #! To adjust the OBlock in next block screen
+            self.next_block.draw(screen, 255, 280)
+        else:
+            self.next_block.draw(screen, 270, 270)
