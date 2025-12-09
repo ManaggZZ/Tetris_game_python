@@ -3,13 +3,23 @@ import pygame, sys
 #// from tetraminoes import *
 #// from block import Block
 from game import Game
+from colors import Colors
 
 pygame.init()
-dark_blue = (44, 44, 127)
+
+title_font = pygame.font.Font(None, 40)     #* None is for default font
+score_surface = title_font.render("Score", True, Colors.white)
+next_suface = title_font.render("Next", True, Colors.white)
+game_over_surface = title_font.render("GAME OVER", True, Colors.white)
+ 
+
+score_rect = pygame.Rect(320, 55, 170, 60)
+next_rect = pygame.Rect(320, 215, 170, 180)
 
 # GAME WINDOW   
 
-screen = pygame.display.set_mode((300, 600))
+#// screen = pygame.display.set_mode((300, 600))
+screen = pygame.display.set_mode((500, 620))
 pygame.display.set_caption("Python Tetris")
 
 #! In game the coordinate system starts from top left corner and if we move right then x increases and if we move down then y increases
@@ -31,7 +41,7 @@ game = Game()
 
 # Here GMAE_UPDATE is the custom event name
 GAME_UPDATE = pygame.USEREVENT      #! USEREVENT is a special event type in pygame that can be used to create custom events. In this case it is used to create an event that will be triggered every time the block's position need to be updated.
-pygame.time.set_timer(GAME_UPDATE, 20)     #* set_timer(event_name, interval in miliseconds)
+pygame.time.set_timer(GAME_UPDATE, 200)     #* set_timer(event_name, interval in miliseconds)
 
 while True:     # This will run till the game is open
     for event in pygame.event.get():    # This will get all the events that pygame recognises and puths them in a list. Then we look through the list of events and check if any of the events is QUIT event. The QUIT event is when we click the close button of the window.
@@ -67,9 +77,15 @@ while True:     # This will run till the game is open
             game.move_down()
     
     # Drawing
-    screen.fill(dark_blue)
-    #// game_grid.draw(screen)
-    #// block.draw(screen)
+    screen.fill(Colors.dark_blue)
+    screen.blit(score_surface, (365, 20, 50, 50))  #! blit() method is block image transfer
+    screen.blit(next_suface, (375, 180, 50, 50))
+
+    if game.game_over == True:
+        screen.blit(game_over_surface, (320, 450, 50, 50))
+
+    pygame.draw.rect(screen, Colors.light_blue, score_rect, 0, 10)
+    pygame.draw.rect(screen, Colors.light_blue, next_rect, 0, 10)
     game.draw(screen)
 
     pygame.display.update() 

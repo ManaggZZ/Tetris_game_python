@@ -73,7 +73,7 @@ class Grid:
             for column in range(self.num_cols):
                 cell_value = self.grid[row][column]
                 # SYNTAX -> cell_rect = pygame.Rect(x, y, w, h) x and y are coordinates of top left corner
-                cell_rect = pygame.Rect(column*self.cell_size + 1, row*self.cell_size + 1, self.cell_size - 1, self.cell_size - 1)
+                cell_rect = pygame.Rect(column*self.cell_size + 11, row*self.cell_size + 11, self.cell_size - 1, self.cell_size - 1)
                 # SYNTAX -> pygame.draw.rect(surface , color, rect)  surface is to draw obj on i.e, the display surface in the main file
                 pygame.draw.rect(screen, self.colors[cell_value], cell_rect)
                 #> pygame.draw.rect(screen, (50, 50, 50), cell_rect, 1)

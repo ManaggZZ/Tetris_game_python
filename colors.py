@@ -7,6 +7,9 @@ class Colors:
     purple = (116, 0, 247)
     cyan = (21, 204, 209)
     blue = (13, 64, 216)
+    white = (255, 255, 255)
+    dark_blue = (44, 44, 127)
+    light_blue = (59, 85, 162)
 
     @classmethod
     def get_cell_colors(cls):       #! CLS is a reference to the class itself and it allows us to access the class level attributes and methods. It is similar to using self to access instant level attributes and methods but CLS is used for the class level.
