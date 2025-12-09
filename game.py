@@ -7,8 +7,8 @@ import random
 class Game:
     def __init__(self):
         self.grid = Grid()
-        self.blocks = [IBlock(), IBlock(), IBlock(), OBlock(), OBlock(), OBlock(), IBlock()]
-        # self.blocks = [LBlock(), JBlock(), IBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]
+        # self.blocks = [IBlock(), IBlock(), IBlock(), OBlock(), OBlock(), OBlock(), IBlock()]
+        self.blocks = [LBlock(), JBlock(), IBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]
         self.current_block = self.get_random_block()
         self.next_block = self.get_random_block()
 
@@ -35,6 +35,9 @@ class Game:
         self.current_block.move(1,0)
         if self.block_inside() == False:
             self.current_block.move(-1,0)
+        
+    def rotate(self):
+        self.current_block.rotate()
     
     def block_inside(self):     #! Method to check if the position of block if inside the window or not
         tiles = self.current_block.get_cell_positions()
