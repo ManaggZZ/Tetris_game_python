@@ -31,7 +31,7 @@ game = Game()
 
 # Here GMAE_UPDATE is the custom event name
 GAME_UPDATE = pygame.USEREVENT      #! USEREVENT is a special event type in pygame that can be used to create custom events. In this case it is used to create an event that will be triggered every time the block's position need to be updated.
-pygame.time.set_timer(GAME_UPDATE, 500)     #* set_timer(event_name, interval in miliseconds)
+pygame.time.set_timer(GAME_UPDATE, 20)     #* set_timer(event_name, interval in miliseconds)
 
 while True:     # This will run till the game is open
     for event in pygame.event.get():    # This will get all the events that pygame recognises and puths them in a list. Then we look through the list of events and check if any of the events is QUIT event. The QUIT event is when we click the close button of the window.
@@ -40,13 +40,17 @@ while True:     # This will run till the game is open
             sys.exit()
         
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if game.game_over == True:
+                game.game_over = False
+                game.reset()    #! Press any key to reset the game.
+
+            if event.key == pygame.K_LEFT and game.game_over == False:
                 game.move_left()
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT and game.game_over == False:
                 game.move_right()
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_DOWN and game.game_over == False:
                 game.move_down()
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP and game.game_over == False:
                 game.rotate()
         
         #// keys = pygame.key.get_pressed()
@@ -59,7 +63,7 @@ while True:     # This will run till the game is open
         #// if keys[pygame.K_DOWN]:
         #//     game.move_down()
         
-        if event.type == GAME_UPDATE:
+        if event.type == GAME_UPDATE and game.game_over == False:
             game.move_down()
     
     # Drawing
